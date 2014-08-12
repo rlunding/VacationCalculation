@@ -1,5 +1,6 @@
 package org.lunding;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
@@ -11,7 +12,7 @@ import java.math.RoundingMode;
  * @version 1.0
  * @since 2014-08-10
  */
-public class Currency {
+public class Currency implements Serializable{
 	
 	private String code;
 	private String name;

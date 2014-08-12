@@ -1,9 +1,10 @@
 package org.lunding;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class WhoPay {
+public class WhoPay implements Serializable{
 	
 	private Person payer;
 	private Person receiver;

@@ -1,5 +1,6 @@
 package org.lunding;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 
@@ -16,7 +17,7 @@ import java.math.BigDecimal;
  * @version 1.0
  * @since 2014-08-10
  */
-public class Expense {
+public class Expense implements Serializable{
 	
 	private String title;
 	private Person person;

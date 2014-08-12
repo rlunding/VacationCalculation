@@ -1,5 +1,6 @@
 package org.lunding;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ import java.util.HashMap;
  * @version 1.0
  * @since 2014-08-10
  */
-public class Event {
+public class Event implements Serializable{
 	
 	private String name;
 	private Currency currency;
