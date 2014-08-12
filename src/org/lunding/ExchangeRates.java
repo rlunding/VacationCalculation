@@ -19,25 +19,30 @@ import org.jdom2.output.XMLOutputter;
 
 public class ExchangeRates {
 	
-	private ArrayList<Currency> currency;
+	private static ArrayList<Currency> currencyList;
+	private static String lastUpdated;
 	//Make a last updated value
 	//Lav noget så den sidste opdatering bliver gemt i en fil.
 	
-	public ExchangeRates(){
-		currency = new ArrayList<Currency>();
-		updateCurrency();
+	private ExchangeRates(){
 	}
 	
-	public ExchangeRates(ArrayList<Currency> currency){
-		this.currency = currency;
+	public static void initialize(){
+		lastUpdated = "";
+		currencyList = new ArrayList<Currency>();
+		updateCurrency(getDocumentFromFile());
 	}
 	
-	public ArrayList<Currency>getCurrencies(){
-		return this.currency;
+	public static void update(){
+		updateCurrency(getDocumentFromWeb());
 	}
 	
-	public Currency getCurrency(String code){
-		for(Currency c : this.currency){
+	public static ArrayList<Currency>getCurrencies(){
+		return currencyList;
+	}
+	
+	public static Currency getCurrency(String code){
+		for(Currency c : currencyList){
 			if(c.getCode().equals(code)){
 				return c;
 			}
@@ -45,20 +50,9 @@ public class ExchangeRates {
 		return null;
 	}
 	
-	public void printXML(){
-		writeXMLConsole(getDocument());
-	}
-	
-	public void printCurrencies(){
-		for(Currency c : this.currency){
-			System.out.println(c.toString());
-		}		
-	}
-	
-	private void updateCurrency(){
-		this.currency.add(new Currency("DKK", "Dansk krone", new BigDecimal(100)));
+	private static void updateCurrency(Document doc){
+		currencyList.add(new Currency("DKK", "Dansk krone", new BigDecimal(100)));
 		NumberFormat nf = NumberFormat.getInstance();
-		Document doc = getDocumentFromFile();
 		Element root = doc.getRootElement();
 		List<Element> elements = root.getChildren();
 		List<Element> currency = elements.get(0).getChildren("currency");
@@ -74,18 +68,18 @@ public class ExchangeRates {
 			}
 			if(!code.isEmpty() && !desc.isEmpty() && rate.compareTo(BigDecimal.ZERO) != 0){
 				Currency c = new Currency(code, desc, rate);
-				if(this.currency.contains(c)){
-					this.currency.get(this.currency.indexOf(c)).setRate(rate);
+				if(currency.contains(c)){
+					currencyList.get(currency.indexOf(c)).setRate(rate);
 					System.out.println(desc + " updated");
 				} else {
-					this.currency.add(c);
+					currencyList.add(c);
 				}
 			}
 		}
 		//printCurrencies();
 	}
 	
-	private Document getDocument(){
+	private static Document getDocumentFromWeb(){
 		String url = "http://www.nationalbanken.dk/_vti_bin/DN/DataService.svc/CurrencyRatesXML?lang=da";
 		Document doc;
 		try {
@@ -101,7 +95,7 @@ public class ExchangeRates {
 		return null;
 	}
 	
-	private Document getDocumentFromFile(){
+	private static Document getDocumentFromFile(){
 		Document doc;
 		try {
 			doc = (Document) new SAXBuilder().build(new File("currency.xml"));
@@ -116,7 +110,23 @@ public class ExchangeRates {
 		return null;
 	}
 	
-	private void writeXMLConsole(Document doc){
+	public void printXML(String source){
+		if(source.equalsIgnoreCase("WEB")){
+			writeXMLConsole(getDocumentFromWeb());
+		} else if(source.equalsIgnoreCase("FILE")){
+			writeXMLConsole(getDocumentFromFile());
+		} else {
+			System.out.println("The document is only available from: FILE or WEB");
+		}		
+	}
+	
+	public static void printCurrencies(){
+		for(Currency c : currencyList){
+			System.out.println(c.toString());
+		}		
+	}
+	
+	private static void writeXMLConsole(Document doc){
 		XMLOutputter xmlout = new XMLOutputter();
 		Format f = Format.getPrettyFormat();
 		xmlout.setFormat(f);

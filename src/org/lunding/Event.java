@@ -60,6 +60,10 @@ public class Event implements Serializable{
 	public boolean addPerson(Person p){
 		return this.persons.add(p);
 	}
+	
+	public boolean removePerson(Person p){
+		return this.persons.remove(p);
+	}
 
 	public ArrayList<Expense> getExpenses() {
 		return expenses;

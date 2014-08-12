@@ -1,5 +1,6 @@
 package org.lunding;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -10,9 +11,9 @@ import java.io.ObjectOutputStream;
 public class Serializer {
 
 	
-	public static void serializeEvent(Event event){
+	public static void serializeEvent(Event event, String filename){
 		try {
-			FileOutputStream fileout = new FileOutputStream("oringen.event");
+			FileOutputStream fileout = new FileOutputStream(filename + ".event");
 			ObjectOutputStream oos = new ObjectOutputStream(fileout);
 			oos.writeObject(event);
 			oos.close();
@@ -24,9 +25,9 @@ public class Serializer {
 		}
 	}
 	
-	public static Event deserialzeEvent(){
+	public static Event deserialzeEvent(File file){
 		try {
-			FileInputStream filein = new FileInputStream("oringen.event");
+			FileInputStream filein = new FileInputStream(file);
 			ObjectInputStream ois = new ObjectInputStream(filein);
 			Event event = (Event) ois.readObject();
 			ois.close();

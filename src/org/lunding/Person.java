@@ -5,13 +5,11 @@ import java.io.Serializable;
 public class Person implements Serializable{
 	
 	private String name;
-	private String password;
 	private String mail;
 	
-	public Person(String name, String password, String mail) {
+	public Person(String name, String mail) {
 		super();
 		this.name = name;
-		this.password = password;
 		this.mail = mail;
 	}
 	
@@ -19,14 +17,16 @@ public class Person implements Serializable{
 		return name;
 	}
 	
-	public String getPassword() {
-		return password;
-	}
 	
 	public String getMail() {
 		return mail;
 	}
 	
+	@Override
+	public String toString() {
+		return "name: " + name;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if(this == obj){
@@ -36,6 +36,6 @@ public class Person implements Serializable{
 			return false;
 		}
 		Person p = (Person) obj;
-		return p.name.equals(this.name) && p.password.equals(this.password) && p.mail.equals(this.mail);
+		return p.name.equals(this.name) && p.mail.equals(this.mail);
 	}
 }
