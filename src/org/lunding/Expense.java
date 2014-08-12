@@ -2,6 +2,20 @@ package org.lunding;
 
 import java.math.BigDecimal;
 
+
+/**
+ * Expense class. Contains all information about an expense.<br>
+ * This will be: 
+ * <ul>
+ * 	<li>Title/name for expense</li>
+ * 	<li>What person had the expense</li>
+ * 	<li>The amount</li>
+ *  <li>What currency</li>
+ * </ul>
+ * @author Rasmus Lunding
+ * @version 1.0
+ * @since 2014-08-10
+ */
 public class Expense {
 	
 	private String title;

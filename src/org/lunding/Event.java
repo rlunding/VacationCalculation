@@ -5,6 +5,19 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Event class. Contains all information about an event.<br>
+ * This will be: 
+ * <ul>
+ * 	<li>Name of the event</li>
+ * 	<li>What currency the end result should be given in</li>
+ * 	<li>Persons attending the event</li>
+ *  <li>All the expenses for this event</li>
+ * </ul>
+ * @author Rasmus Lunding
+ * @version 1.0
+ * @since 2014-08-10
+ */
 public class Event {
 	
 	private String name;
@@ -12,6 +25,13 @@ public class Event {
 	private ArrayList<Person> persons;
 	private ArrayList<Expense> expenses;
 
+	/**
+	 * To create a new event the name of the event and what currency 
+	 * the end result should be given in must be provided. <br>
+	 * Persons and expenses can be added later on.
+	 * @param name
+	 * @param currency
+	 */
 	public Event(String name, Currency currency) {
 		super();
 		this.name = name;
@@ -48,7 +68,19 @@ public class Event {
 		return this.expenses.add(e);
 	}
 
-
+	/**
+	 * This method will calculate:
+	 * <ul>
+	 * 	<li>Total expenses hold by each person</li>
+	 * 	<li>Total expenses</li>
+	 * 	<li>Total expenses pr. person</li>
+	 * 	<li>Total expenses hold by each person (with price pr. person subtracted)</li>
+	 * 	<li>Who need some money</li>
+	 * 	<li>Who will give some money</li>
+	 * 	<li>Who is going to pay who</li>
+	 * </ul>
+	 *  
+	 */
 	public void calculateWhoPayWho(){
 		ArrayList<WhoPay> paylist = new ArrayList<WhoPay>();
 		HashMap<Person, BigDecimal> expense = new HashMap<Person, BigDecimal>();
@@ -130,7 +162,13 @@ public class Event {
 		}
 	}
 	
-	public BigDecimal getAmountInEventCurrency(Expense e){
+	/**
+	 * This method calculate the amount for an expense in this events currency.<br>
+	 * The method will return the amount in the events currency as a BigDecimal
+	 * @param e
+	 * @return BigDecimal with amount in event currency
+	 */
+	private BigDecimal getAmountInEventCurrency(Expense e){
 		BigDecimal amount = e.getAmount();
 		Currency currency = e.getCurrency();
 		if(this.currency.equals(currency)){
