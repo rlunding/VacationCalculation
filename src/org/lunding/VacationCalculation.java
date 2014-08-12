@@ -26,13 +26,16 @@ public class VacationCalculation {
 		e.addExpense(new Expense("Vodka", eskil, new BigDecimal(2*57), rate.getCurrency("DKK")));
 		e.addExpense(new Expense("Alkohol", eskil, new BigDecimal("247"), rate.getCurrency("DKK")));
 		e.addExpense(new Expense("Pavilion", eskil, new BigDecimal("108"), rate.getCurrency("DKK")));
-		e.addExpense(new Expense("Mad", rasmus, new BigDecimal("450"), rate.getCurrency("SEK")));
+		e.addExpense(new Expense("Mad", rasmus, new BigDecimal("422.50"), rate.getCurrency("DKK")));
+		e.addExpense(new Expense("Mad", rasmus, new BigDecimal("100"), rate.getCurrency("DKK")));
 		e.addExpense(new Expense("Mad", laage, new BigDecimal("420"), rate.getCurrency("SEK")));
 		e.addExpense(new Expense("Mad", mikkel, new BigDecimal("533.30"), rate.getCurrency("SEK")));
 		e.addExpense(new Expense("Pizza", mikkel, new BigDecimal("355"), rate.getCurrency("SEK")));
 		e.addExpense(new Expense("Grill", mikkel, new BigDecimal("117.5"), rate.getCurrency("SEK")));
 		e.addExpense(new Expense("ukendt", mikkel, new BigDecimal("147"), rate.getCurrency("SEK")));
-		e.addExpense(new Expense("Telt", lars, new BigDecimal("1300"), rate.getCurrency("SEK")));
+		e.addExpense(new Expense("Telt", lars, new BigDecimal("1305"), rate.getCurrency("SEK")));
+		e.addExpense(new Expense("Mad", lars, new BigDecimal("794.15"), rate.getCurrency("SEK")));
+		e.addExpense(new Expense("Sprut", lars, new BigDecimal("359.65"), rate.getCurrency("DKK")));
 		//e.calculateWhoPayWho();
 		Serializer.serializeEvent(e);
 		Event event = Serializer.deserialzeEvent();
