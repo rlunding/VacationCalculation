@@ -47,4 +47,9 @@ public class Expense implements Serializable{
 	public Currency getCurrency() {
 		return currency;
 	}
+
+	@Override
+	public String toString() {
+		return title + " " + person.getName() + " " + amount.floatValue() + " " + currency.getCode();
+	}
 }

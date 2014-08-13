@@ -11,7 +11,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class LoginFrame extends JFrame{
-	private static final long serialVersionUID = 7340496224061523847L;
 
 	private JTextField user;
 	private JTextField password;

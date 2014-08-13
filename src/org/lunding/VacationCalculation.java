@@ -36,10 +36,10 @@ public class VacationCalculation {
 		e.addExpense(new Expense("Telt", lars, new BigDecimal("1305"), ExchangeRates.getCurrency("SEK")));
 		e.addExpense(new Expense("Mad", lars, new BigDecimal("794.15"), ExchangeRates.getCurrency("SEK")));
 		e.addExpense(new Expense("Sprut", lars, new BigDecimal("359.65"), ExchangeRates.getCurrency("DKK")));
-		//e.calculateWhoPayWho();
+		e.calculateWhoPayWho();
 		Serializer.serializeEvent(e, "oringen");
-		Event event = Serializer.deserialzeEvent();
-		event.calculateWhoPayWho();*/
+		//Event event = Serializer.deserialzeEvent();
+		//event.calculateWhoPayWho();*/
 	}
 
 	public static void main(String[] args) {

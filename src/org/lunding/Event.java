@@ -86,7 +86,7 @@ public class Event implements Serializable{
 	 * </ul>
 	 *  
 	 */
-	public void calculateWhoPayWho(){
+	public ArrayList<WhoPay> calculateWhoPayWho(){
 		ArrayList<WhoPay> paylist = new ArrayList<WhoPay>();
 		HashMap<Person, BigDecimal> expense = new HashMap<Person, BigDecimal>();
 		ArrayList<Person> giveMoney = new ArrayList<Person>();
@@ -165,6 +165,7 @@ public class Event implements Serializable{
 		for(WhoPay wp : paylist){
 			System.out.println(wp);
 		}
+		return paylist;
 	}
 	
 	/**

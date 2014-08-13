@@ -6,6 +6,7 @@ import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -17,7 +18,6 @@ import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class MenuFrame extends JFrame{
-	private static final long serialVersionUID = 4265417303406794381L;
 
 	private JPanel createPanel;
 	private JPanel initialPanel;
@@ -44,6 +44,7 @@ public class MenuFrame extends JFrame{
 	private JPanel createPanel(){
 		//Create panel and prepare it
 		JPanel panel = new JPanel();
+		panel.setBorder(Utilities.border("Create new event"));
 		panel.setLayout(new GridLayout(3,1));
 		
 		//Initialize elements for currency-combobox
@@ -80,7 +81,7 @@ public class MenuFrame extends JFrame{
 	
 	private JPanel initialPanel(){
 		JPanel panel = new JPanel();
-		
+		panel.setBorder(Utilities.border("Select or create event"));
 		panel.setLayout(new GridLayout(2,1));
 		JButton selectEvent = new JButton("Select event");
 		JButton createEvent = new JButton("Create event");
@@ -91,6 +92,7 @@ public class MenuFrame extends JFrame{
 				JFileChooser chooser = new JFileChooser();
 				FileNameExtensionFilter filter = new FileNameExtensionFilter("event", "event");
 				chooser.setFileFilter(filter);
+				chooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
 				int returnVal = chooser.showOpenDialog(getParent());
 				if(returnVal == JFileChooser.APPROVE_OPTION){
 					 System.out.println("You chose to open this file: " +
