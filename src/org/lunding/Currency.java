@@ -61,6 +61,7 @@ public class Currency implements Serializable{
 
 	@Override
 	public String toString() {
-		return "code:" + code + " name:" + name + " rate:" + rate;
+		//return "code:" + code + " name:" + name + " rate:" + rate;
+		return name;
 	}	
 }

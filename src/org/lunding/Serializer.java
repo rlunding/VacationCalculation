@@ -11,18 +11,19 @@ import java.io.ObjectOutputStream;
 public class Serializer {
 
 	
-	public static void serializeEvent(Event event, String filename){
+	public static boolean serializeEvent(Event event, String filename){
 		try {
 			FileOutputStream fileout = new FileOutputStream(filename + ".event");
 			ObjectOutputStream oos = new ObjectOutputStream(fileout);
 			oos.writeObject(event);
 			oos.close();
+			return true;
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return false;
 	}
 	
 	public static Event deserialzeEvent(File file){

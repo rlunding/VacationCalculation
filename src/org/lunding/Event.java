@@ -87,6 +87,10 @@ public class Event implements Serializable{
 	 *  
 	 */
 	public ArrayList<WhoPay> calculateWhoPayWho(){
+		if(persons.size() == 0 || expenses.size() == 0 || currency == null){
+			return null;
+		}
+		
 		ArrayList<WhoPay> paylist = new ArrayList<WhoPay>();
 		HashMap<Person, BigDecimal> expense = new HashMap<Person, BigDecimal>();
 		ArrayList<Person> giveMoney = new ArrayList<Person>();

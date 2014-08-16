@@ -13,8 +13,11 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class MenuFrame extends JFrame{
@@ -45,7 +48,7 @@ public class MenuFrame extends JFrame{
 		//Create panel and prepare it
 		JPanel panel = new JPanel();
 		panel.setBorder(Utilities.border("Create new event"));
-		panel.setLayout(new GridLayout(3,1));
+		panel.setLayout(new GridLayout(3,2));
 		
 		//Initialize elements for currency-combobox
 		ArrayList<Currency> currencyList = ExchangeRates.getCurrencies();
@@ -55,6 +58,8 @@ public class MenuFrame extends JFrame{
 		}
 		
 		//Create elements
+		JLabel nameLabel = new JLabel("Event name: ", SwingConstants.RIGHT);
+		JLabel currencyLabel = new JLabel("Currency: ", SwingConstants.RIGHT);
 		final JTextField eventName = new JTextField();
 		final JComboBox currency = new JComboBox(currencyList.toArray());
 		JButton submit = new JButton("Create event");
@@ -65,6 +70,10 @@ public class MenuFrame extends JFrame{
 				//Take information and go to event page.
 				String name = eventName.getText();
 				Currency cur = (Currency) currency.getSelectedItem();
+				if(name.isEmpty() || name.length() < 2 || name.length() > 20){
+					JOptionPane.showMessageDialog(eventName, "Please write a name (2-20 characters)");
+					return;
+				}
 				Event event = new Event(name, cur);
 				new VCFrame(event);
 				dispose();
@@ -73,8 +82,11 @@ public class MenuFrame extends JFrame{
 		});
 		
 		//Add elements to panel and return it
+		panel.add(nameLabel);
 		panel.add(eventName);
+		panel.add(currencyLabel);
 		panel.add(currency);
+		panel.add(new JPanel());
 		panel.add(submit);
 		return panel;
 	}
