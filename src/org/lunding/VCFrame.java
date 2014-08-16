@@ -72,10 +72,12 @@ public class VCFrame extends JFrame{
 	
 	private JPanel bottomPanel(){
 		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(1,2));
+		panel.setLayout(new GridLayout(1,4));
 		
+		final JLabel currencyLabel = new JLabel(ExchangeRates.lastUpdated(), SwingConstants.RIGHT);
 		JButton save = new JButton("Save");
 		JButton exit = new JButton("Exit");
+		JButton updateCurrency = new JButton("update currency");
 		
 		save.addActionListener(new ActionListener(){
 			@Override
@@ -105,7 +107,17 @@ public class VCFrame extends JFrame{
 		        }
 			}
 		});
+		updateCurrency.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				ExchangeRates.update();
+				currencyLabel.setText(ExchangeRates.lastUpdated());
+				expenseAdded();
+			}
+		});
 		
+		panel.add(currencyLabel);
+		panel.add(updateCurrency);
 		panel.add(exit);
 		panel.add(save);
 		

@@ -37,6 +37,10 @@ public class ExchangeRates {
 		updateCurrency(getDocumentFromWeb());
 	}
 	
+	public static String lastUpdated(){
+		return lastUpdated;
+	}
+	
 	public static ArrayList<Currency>getCurrencies(){
 		return currencyList;
 	}
@@ -76,6 +80,7 @@ public class ExchangeRates {
 				}
 			}
 		}
+		lastUpdated = elements.get(0).getAttributeValue("id");
 		//printCurrencies();
 	}
 	
@@ -110,7 +115,7 @@ public class ExchangeRates {
 		return null;
 	}
 	
-	public void printXML(String source){
+	public static void printXML(String source){
 		if(source.equalsIgnoreCase("WEB")){
 			writeXMLConsole(getDocumentFromWeb());
 		} else if(source.equalsIgnoreCase("FILE")){
