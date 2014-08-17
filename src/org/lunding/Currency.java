@@ -47,6 +47,9 @@ public class Currency implements Serializable{
 		this.rate = rate;
 	}
 
+	/**
+	 * Two currency objects are equal if the have the same code (e.g. DKK)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if(this == obj){
@@ -56,7 +59,7 @@ public class Currency implements Serializable{
 			return false;
 		}
 		Currency c = (Currency) obj;
-		return c.code.equals(this.code); //&& c.name.equals(this.name);
+		return c.code.equals(this.code);
 	}
 
 	@Override

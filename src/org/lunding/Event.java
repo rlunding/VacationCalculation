@@ -25,6 +25,7 @@ public class Event implements Serializable{
 	private Currency currency;
 	private ArrayList<Person> persons;
 	private ArrayList<Expense> expenses;
+	private String consoleTrace;
 
 	/**
 	 * To create a new event the name of the event and what currency 
@@ -39,6 +40,7 @@ public class Event implements Serializable{
 		this.currency = currency;
 		this.persons = new ArrayList<Person>();
 		this.expenses = new ArrayList<Expense>();
+		this.consoleTrace = "";
 	}
 
 	public String getName() {
@@ -72,6 +74,10 @@ public class Event implements Serializable{
 	public boolean addExpense(Expense e){
 		return this.expenses.add(e);
 	}
+	
+	public String getConsoleTrace(){
+		return consoleTrace;
+	}
 
 	/**
 	 * This method will calculate:
@@ -87,6 +93,7 @@ public class Event implements Serializable{
 	 *  
 	 */
 	public ArrayList<WhoPay> calculateWhoPayWho(){
+		StringBuilder sb = new StringBuilder();
 		if(persons.size() == 0 || expenses.size() == 0 || currency == null){
 			return null;
 		}
@@ -98,7 +105,7 @@ public class Event implements Serializable{
 		BigDecimal total = new BigDecimal(0);
 		BigDecimal prPerson = new BigDecimal(0);
 		
-		System.out.println("\nWho had expenses, and how much (in " + currency.getCode() +"):");
+		sb.append("\nWho had expenses, and how much (in " + currency.getCode() +"):\n");
 		for(Person p : persons){
 			expense.put(p, new BigDecimal(0));
 			for(Expense e : expenses){
@@ -110,13 +117,13 @@ public class Event implements Serializable{
 			}
 		}
 		for(Person p : persons){
-			System.out.println(p.getName() + " : " + expense.get(p));
+			sb.append(p.getName() + " : " + expense.get(p) + "\n");
 		}
 		prPerson = total.divide(new BigDecimal(persons.size()), 2, RoundingMode.HALF_UP);
-		System.out.println("Total expenses: " + total.doubleValue() + " " + currency.getCode());
-		System.out.println("Expenses pr. person: " + prPerson.doubleValue() + " " + currency.getCode());
+		sb.append("Total expenses: " + total.doubleValue() + " " + currency.getCode() + "\n");
+		sb.append("Expenses pr. person: " + prPerson.doubleValue() + " " + currency.getCode() + "\n");
 		
-		System.out.println("\nWho had expenses when the price pr. person is subtracted (in " + currency.getCode() +"):");
+		sb.append("\nWho had expenses when the price pr. person is subtracted (in " + currency.getCode() +"):" + "\n");
 		for(Person p : persons){
 			BigDecimal amount = expense.get(p).subtract(prPerson);
 			expense.put(p, amount);
@@ -127,19 +134,19 @@ public class Event implements Serializable{
 			}
 		}
 		for(Person p : persons){
-			System.out.println(p.getName() + " : " + expense.get(p));
+			sb.append(p.getName() + " : " + expense.get(p) + "\n");
 		}
 		
-		System.out.println("\nThese need some money");
+		sb.append("\nThese need some money" + "\n");
 		for(Person p : getMoney){
-			System.out.println(p.getName());
+			sb.append(p.getName() + "\n");
 		}
-		System.out.println("These will give some money");
+		sb.append("These will give some money" + "\n");
 		for(Person p : giveMoney){
-			System.out.println(p.getName());
+			sb.append(p.getName() + "\n");
 		}
 		
-		System.out.println("\nWho is going to pay who:");
+		sb.append("\nWho is going to pay who:" + "\n");
 		while(!getMoney.isEmpty() && !giveMoney.isEmpty()){
 			Person get = getMoney.get(0);
 			Person give = giveMoney.get(0);
@@ -167,8 +174,9 @@ public class Event implements Serializable{
 		}
 		
 		for(WhoPay wp : paylist){
-			System.out.println(wp);
+			sb.append(wp + "\n");
 		}
+		consoleTrace = sb.toString();
 		return paylist;
 	}
 	
