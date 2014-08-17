@@ -2,6 +2,12 @@ package org.lunding;
 
 import java.io.Serializable;
 
+/**
+ * Class made to hold information about a person.
+ * @author Rasmus Lunding
+ * @version 1.0
+ * @since 2014-08-10
+ */
 public class Person implements Serializable{
 	
 	private String name;
@@ -27,6 +33,9 @@ public class Person implements Serializable{
 		return "name: " + name;
 	}
 
+	/**
+	 * Two persons are equal if their name and email are equal.
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if(this == obj){

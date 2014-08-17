@@ -20,6 +20,12 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+/**
+ * Class which extends a JFrame. Used as a welcome screen to the program
+ * @author Rasmus Lunding
+ * @version 1.0
+ * @since 2014-08-10
+ */
 public class MenuFrame extends JFrame{
 
 	private JPanel createPanel;
@@ -44,6 +50,10 @@ public class MenuFrame extends JFrame{
 		setVisible(true);
 	}
 	
+	/**
+	 * Create a JPanel where the user can create a new event.
+	 * @return JPanel
+	 */
 	private JPanel createPanel(){
 		//Create panel and prepare it
 		JPanel panel = new JPanel();
@@ -91,13 +101,25 @@ public class MenuFrame extends JFrame{
 		return panel;
 	}
 	
+	/**
+	 * The initial panel is the first the user will see.<br>
+	 * He will get an option between selecting an event or create one.<br>
+	 * This method will return a JPanel with the needed elements.
+	 * @return JPanel
+	 */
 	private JPanel initialPanel(){
+		//Create elements
 		JPanel panel = new JPanel();
 		panel.setBorder(Utilities.border("Select or create event"));
 		panel.setLayout(new GridLayout(2,1));
 		JButton selectEvent = new JButton("Select event");
 		JButton createEvent = new JButton("Create event");
 		
+		/*
+		 * Make the select-event button open a file-chooser prompt.
+		 * If the user selects a file, dispose the current view
+		 * and make a new view with the selected event.
+		 */
 		selectEvent.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				//select event from file
@@ -115,6 +137,9 @@ public class MenuFrame extends JFrame{
 				dispose();
 			}
 		});
+		/*
+		 * Show the create event panel if the user press this button.
+		 */
 		createEvent.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				createPanel.setVisible(true);
@@ -128,6 +153,11 @@ public class MenuFrame extends JFrame{
 		return panel;
 	}
 	
+	/**
+	 * Method to enable/disable all components in a container
+	 * @param container
+	 * @param enable
+	 */
 	private void enableComponents(Container container, boolean enable) {
         Component[] components = container.getComponents();
         for (Component component : components) {

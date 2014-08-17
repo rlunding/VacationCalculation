@@ -10,6 +10,13 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+/**
+ * This class it not used anymore.
+ * @author Rasmus Lunding
+ * @version 1.0
+ * @since 2014-08-10
+ */
+@Deprecated
 public class LoginFrame extends JFrame{
 
 	private JTextField user;
