@@ -79,6 +79,10 @@ public class Event implements Serializable{
 		return this.expenses.add(e);
 	}
 	
+	public boolean removeExpense(Expense e){
+		return expenses.remove(e);
+	}
+	
 	public String getConsoleTrace(){
 		return consoleTrace;
 	}

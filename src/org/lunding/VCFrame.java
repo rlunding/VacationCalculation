@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
@@ -18,6 +20,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Utilities;
 
 /**
  * This class extends a JFrame an is used as a GUI to manipulate and event.
@@ -80,10 +84,10 @@ public class VCFrame extends JFrame{
 			sb.append(exp.toString() + "\n");
 		}
 		sb.append("\nTotal expenses: " + event.getTotalExpenses() + " " + event.getCurrency().getCode() +"\n");
-		sb.append("Price pr person: " + event.getPricePrPerson() + " " + event.getCurrency().getCode() +"\n");
+		sb.append("Price pr person: " + event.getPricePrPerson() + " " + event.getCurrency().getCode());
 		expensesView.append(sb.toString());
 		
-		System.out.println(event.getConsoleTrace());
+		//System.out.println(event.getConsoleTrace());
 	}
 	
 	private JPanel bottomPanel(){
@@ -142,7 +146,7 @@ public class VCFrame extends JFrame{
 	
 	private JPanel whoPayPanel(){
 		JPanel panel = new JPanel();
-		panel.setBorder(Utilities.border("Who pay"));
+		panel.setBorder(MyUtilities.border("Who pay"));
 		panel.setLayout(new GridLayout(1,1));
 		
 		whoPayWhoView = new JTextArea();
@@ -154,11 +158,57 @@ public class VCFrame extends JFrame{
 	
 	private JPanel expenseViewPanel(){
 		JPanel panel = new JPanel();
-		panel.setBorder(Utilities.border("Expenses"));
+		panel.setBorder(MyUtilities.border("Expenses"));
 		panel.setLayout(new GridLayout(1,1));
 		
 		expensesView = new JTextArea();
 		JScrollPane scrollpane = new JScrollPane(expensesView);
+		expensesView.setEditable(false);
+		
+		expensesView.addMouseListener(new MouseAdapter() {
+	         @Override
+	         public void mouseClicked(MouseEvent e) {
+	            if (e.getButton() != MouseEvent.BUTTON1) {
+	               return;
+	            }
+	            if (e.getClickCount() != 2) {
+	               return;
+	            }
+
+	            int offset = expensesView.viewToModel(e.getPoint());
+
+	            try {
+	               int rowStart = Utilities.getRowStart(expensesView, offset);
+	               int rowEnd = Utilities.getRowEnd(expensesView, offset);
+	               String selectedLine = expensesView.getText().substring(rowStart, rowEnd);
+	               expensesView.setSelectionStart(rowStart);
+	               expensesView.setSelectionEnd(rowEnd);
+	               
+	               int caretPos = expensesView.getCaretPosition();
+	               int rowNum = (caretPos == 0) ? 1 : 0;
+	               for(int i = caretPos; i > 0; rowNum++){
+	            	   i = Utilities.getRowStart(expensesView, i) - 1;
+	               }
+	               System.out.println("Row: " + rowNum);
+	               System.out.println(selectedLine);
+	               
+	               int reply = JOptionPane.showConfirmDialog(null, "Delete expense?", "Delete", JOptionPane.YES_NO_OPTION);
+			       if (reply == JOptionPane.YES_OPTION) {
+			    	   ArrayList<Expense> expenses = event.getExpenses();
+			    	   if(expenses.size() > rowNum-1){
+			    		   event.removeExpense(expenses.get(rowNum-1));
+			    		   expenseAdded();
+			    	   } 
+			       }
+			       else {
+			          //do nothing?
+			       }
+
+	            } catch (BadLocationException e1) {
+	               e1.printStackTrace();
+	            }
+	         }
+	      });
 		
 		panel.add(scrollpane);
 		return panel;
@@ -166,7 +216,7 @@ public class VCFrame extends JFrame{
 	
 	private JPanel expensePanel(){
 		JPanel panel = new JPanel();
-		panel.setBorder(Utilities.border("Create new expense"));
+		panel.setBorder(MyUtilities.border("Create new expense"));
 		panel.setLayout(new GridLayout(5,2));
 		
 		JLabel titleLabel = new JLabel("Title: ", SwingConstants.RIGHT);
@@ -224,14 +274,14 @@ public class VCFrame extends JFrame{
 	
 	private JPanel personPanel(){
 		JPanel panel = new JPanel();
-		panel.setBorder(Utilities.border("Persons"));
+		panel.setBorder(MyUtilities.border("Persons"));
 		panel.setLayout(new GridLayout(2,1));
 		
 		JPanel deletePanel = new JPanel();
-		deletePanel.setBorder(Utilities.border("Delete person"));
+		deletePanel.setBorder(MyUtilities.border("Delete person"));
 		deletePanel.setLayout(new GridLayout(2,2));
 		JPanel createPanel = new JPanel();
-		createPanel.setBorder(Utilities.border("Create person"));
+		createPanel.setBorder(MyUtilities.border("Create person"));
 		createPanel.setLayout(new GridLayout(3,2));
 		
 		JLabel personLabel = new JLabel("Person: ", SwingConstants.RIGHT);
@@ -262,7 +312,7 @@ public class VCFrame extends JFrame{
 					JOptionPane.showMessageDialog(nameField, "Please write a name");
 					return;
 				}
-				if(email.isEmpty() || !Utilities.validateEmail(email)){
+				if(email.isEmpty() || !MyUtilities.validateEmail(email)){
 					JOptionPane.showMessageDialog(emailField, "Please write a email");
 					return;
 				}				

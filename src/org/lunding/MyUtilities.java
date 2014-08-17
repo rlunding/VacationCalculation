@@ -14,9 +14,9 @@ import javax.swing.border.TitledBorder;
  * @version 1.0
  * @since 2014-08-10
  */
-public class Utilities {
+public class MyUtilities {
 	
-	private Utilities(){
+	private MyUtilities(){
 		
 	}
 	

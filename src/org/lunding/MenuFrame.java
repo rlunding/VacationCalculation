@@ -57,7 +57,7 @@ public class MenuFrame extends JFrame{
 	private JPanel createPanel(){
 		//Create panel and prepare it
 		JPanel panel = new JPanel();
-		panel.setBorder(Utilities.border("Create new event"));
+		panel.setBorder(MyUtilities.border("Create new event"));
 		panel.setLayout(new GridLayout(3,2));
 		
 		//Initialize elements for currency-combobox
@@ -110,7 +110,7 @@ public class MenuFrame extends JFrame{
 	private JPanel initialPanel(){
 		//Create elements
 		JPanel panel = new JPanel();
-		panel.setBorder(Utilities.border("Select or create event"));
+		panel.setBorder(MyUtilities.border("Select or create event"));
 		panel.setLayout(new GridLayout(2,1));
 		JButton selectEvent = new JButton("Select event");
 		JButton createEvent = new JButton("Create event");
