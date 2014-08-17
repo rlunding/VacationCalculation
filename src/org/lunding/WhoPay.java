@@ -4,6 +4,18 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+/**
+ * This class is used to make "WhoPay"-objects. These objects have information about:<br>
+ * <ul>
+ * 	<li>The payer</li>
+ * 	<li>The receiver</li>
+ * 	<li>amount</li>
+ * 	<li>currency</li>
+ * </ul>
+ * @author Rasmus Lunding
+ * @version 1.0
+ * @since 2014-08-10
+ */
 public class WhoPay implements Serializable{
 	
 	private Person payer;

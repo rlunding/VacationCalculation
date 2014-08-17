@@ -26,6 +26,8 @@ public class Event implements Serializable{
 	private ArrayList<Person> persons;
 	private ArrayList<Expense> expenses;
 	private String consoleTrace;
+	private double totalExpenses;
+	private double pricePrPerson;
 
 	/**
 	 * To create a new event the name of the event and what currency 
@@ -41,6 +43,8 @@ public class Event implements Serializable{
 		this.persons = new ArrayList<Person>();
 		this.expenses = new ArrayList<Expense>();
 		this.consoleTrace = "";
+		this.totalExpenses = 0;
+		this.pricePrPerson = 0;
 	}
 
 	public String getName() {
@@ -77,6 +81,14 @@ public class Event implements Serializable{
 	
 	public String getConsoleTrace(){
 		return consoleTrace;
+	}
+	
+	public double getTotalExpenses() {
+		return totalExpenses;
+	}
+
+	public double getPricePrPerson() {
+		return pricePrPerson;
 	}
 
 	/**
@@ -120,8 +132,10 @@ public class Event implements Serializable{
 			sb.append(p.getName() + " : " + expense.get(p) + "\n");
 		}
 		prPerson = total.divide(new BigDecimal(persons.size()), 2, RoundingMode.HALF_UP);
-		sb.append("Total expenses: " + total.doubleValue() + " " + currency.getCode() + "\n");
-		sb.append("Expenses pr. person: " + prPerson.doubleValue() + " " + currency.getCode() + "\n");
+		totalExpenses = total.doubleValue();
+		pricePrPerson = prPerson.doubleValue();
+		sb.append("Total expenses: " + totalExpenses + " " + currency.getCode() + "\n");
+		sb.append("Expenses pr. person: " + pricePrPerson + " " + currency.getCode() + "\n");
 		
 		sb.append("\nWho had expenses when the price pr. person is subtracted (in " + currency.getCode() +"):" + "\n");
 		for(Person p : persons){

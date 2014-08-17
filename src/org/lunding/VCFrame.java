@@ -19,6 +19,18 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+/**
+ * This class extends a JFrame an is used as a GUI to manipulate and event.
+ * <ul>
+ * 	<li>Create/delete persons</li>
+ * 	<li>Create an expense</li>
+ * 	<li>See who is paying who</li>
+ * 	<li>See all expenses</li>
+ * </ul>
+ * @author Rasmus Lunding
+ * @version 1.0
+ * @since 2014-08-10
+ */
 public class VCFrame extends JFrame{
 
 	private Event event;
@@ -51,13 +63,6 @@ public class VCFrame extends JFrame{
 	}
 	
 	private void expenseAdded(){
-		expensesView.setText("");
-		StringBuilder sb = new StringBuilder();
-		for(Expense exp : event.getExpenses()){
-			sb.append(exp.toString() + "\n");
-		}
-		expensesView.append(sb.toString());
-		
 		whoPayWhoView.setText("");
 		StringBuilder sb2 = new StringBuilder();
 		ArrayList<WhoPay> whoPayList = event.calculateWhoPayWho();
@@ -68,6 +73,17 @@ public class VCFrame extends JFrame{
 			sb2.append(wp.toString() + "\n");
 		}
 		whoPayWhoView.append(sb2.toString());
+		
+		expensesView.setText("");
+		StringBuilder sb = new StringBuilder();
+		for(Expense exp : event.getExpenses()){
+			sb.append(exp.toString() + "\n");
+		}
+		sb.append("\nTotal expenses: " + event.getTotalExpenses() + " " + event.getCurrency().getCode() +"\n");
+		sb.append("Price pr person: " + event.getPricePrPerson() + " " + event.getCurrency().getCode() +"\n");
+		expensesView.append(sb.toString());
+		
+		System.out.println(event.getConsoleTrace());
 	}
 	
 	private JPanel bottomPanel(){

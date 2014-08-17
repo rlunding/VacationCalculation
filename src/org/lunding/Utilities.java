@@ -7,12 +7,25 @@ import java.util.regex.Pattern;
 import javax.swing.BorderFactory;
 import javax.swing.border.TitledBorder;
 
+/**
+ * Utilities class<br>
+ * Made for small methods that can be used multiple places.
+ * @author Rasmus Lunding
+ * @version 1.0
+ * @since 2014-08-10
+ */
 public class Utilities {
 	
 	private Utilities(){
 		
 	}
 	
+	/**
+	 * Create a border with a title (the string input).<br>
+	 * The border can be added to a JPanel.
+	 * @param title
+	 * @return Border
+	 */
 	public static TitledBorder border(String title){
 		TitledBorder border = BorderFactory.createTitledBorder(
 				BorderFactory.createLineBorder(Color.BLACK), title);
@@ -20,6 +33,11 @@ public class Utilities {
 		return border;
 	}
 	
+	/**
+	 * Validate that a string is an email.
+	 * @param email
+	 * @return boolean
+	 */
 	public static boolean validateEmail(String email){
 		String EMAIL_PATTERN = 
 				"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
