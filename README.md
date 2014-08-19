@@ -8,3 +8,5 @@ Expenses pr. person: 1000 DKK<br>
 Lars have to pay John 250 DKK<br>
 Andy have to pay John 421 DKK<br>
 Hans have to pay Gert 234 DKK<br>
+<br>
+A GUI have now been added. It is also possible to save/load files.
