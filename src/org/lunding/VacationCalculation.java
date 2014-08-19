@@ -7,7 +7,7 @@ public class VacationCalculation {
 	public VacationCalculation(){
 		ExchangeRates.initialize();
 		new MenuFrame();
-		//ExchangeRates.printXML("WEB");
+		//ExchangeRates.printXML(ExchangeRates.WEB);
 		/*Event e = new Event("O-ringen", ExchangeRates.getCurrency("DKK"));
 		Person rasmus = new Person("Rasmus", "dr@dr.dk");
 		Person lars = new Person("Lars",  "dr@dr.dk");

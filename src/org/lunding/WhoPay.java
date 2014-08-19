@@ -23,7 +23,13 @@ public class WhoPay implements Serializable{
 	private BigDecimal amount;
 	private Currency currency;
 	
-	
+	/**
+	 * Generate a "WhoPay"-object.
+	 * @param Person payer
+	 * @param Person receiver
+	 * @param BigDecimal amount
+	 * @param Currency currency
+	 */
 	public WhoPay(Person payer, Person receiver, BigDecimal amount, Currency currency) {
 		super();
 		this.payer = payer;

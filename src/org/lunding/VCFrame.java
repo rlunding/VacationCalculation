@@ -178,12 +178,16 @@ public class VCFrame extends JFrame{
 	            int offset = expensesView.viewToModel(e.getPoint());
 
 	            try {
+	            	//Find marked text
 	               int rowStart = Utilities.getRowStart(expensesView, offset);
 	               int rowEnd = Utilities.getRowEnd(expensesView, offset);
 	               String selectedLine = expensesView.getText().substring(rowStart, rowEnd);
+	               
+	               //Mark the text
 	               expensesView.setSelectionStart(rowStart);
 	               expensesView.setSelectionEnd(rowEnd);
 	               
+	               //calculate row
 	               int caretPos = expensesView.getCaretPosition();
 	               int rowNum = (caretPos == 0) ? 1 : 0;
 	               for(int i = caretPos; i > 0; rowNum++){
