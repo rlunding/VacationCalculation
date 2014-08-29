@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <exchangerates xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="Valutakurser" author="Danmarks Nationalbank" refcur="DKK" refamt="1">
-  <dailyrates id="2014-08-15">
-    <currency code="AUD" desc="Australske dollar" rate="519,12" />
-    <currency code="BGN" desc="Bulgarske lev" rate="381,20" />
-    <currency code="BRL" desc="Brasilianske real" rate="246,20" />
-    <currency code="CAD" desc="Canadiske dollar" rate="510,90" />
-    <currency code="CHF" desc="Schweiziske franc" rate="615,45" />
-    <currency code="CNY" desc="Kinesiske Yuan renminbi" rate="90,51" />
-    <currency code="CZK" desc="Tjekkiske koruna" rate="26,74" />
-    <currency code="EUR" desc="Euro" rate="745,56" />
-    <currency code="GBP" desc="Britiske pund" rate="929,45" />
-    <currency code="HKD" desc="Hongkong dollar" rate="71,85" />
-    <currency code="HRK" desc="Kroatiske kuna" rate="97,78" />
-    <currency code="HUF" desc="Ungarske forint" rate="2,383" />
-    <currency code="IDR" desc="Indonesiske rupiah" rate="0,0477" />
-    <currency code="ILS" desc="Israelske shekel" rate="159,70" />
-    <currency code="INR" desc="Indiske rupee" rate="9,15" />
+  <dailyrates id="2014-08-22">
+    <currency code="AUD" desc="Australske dollar" rate="523,25" />
+    <currency code="BGN" desc="Bulgarske lev" rate="381,19" />
+    <currency code="BRL" desc="Brasilianske real" rate="247,05" />
+    <currency code="CAD" desc="Canadiske dollar" rate="512,85" />
+    <currency code="CHF" desc="Schweiziske franc" rate="616,14" />
+    <currency code="CNY" desc="Kinesiske Yuan renminbi" rate="91,34" />
+    <currency code="CZK" desc="Tjekkiske koruna" rate="26,78" />
+    <currency code="EUR" desc="Euro" rate="745,53" />
+    <currency code="GBP" desc="Britiske pund" rate="931,56" />
+    <currency code="HKD" desc="Hongkong dollar" rate="72,51" />
+    <currency code="HRK" desc="Kroatiske kuna" rate="97,73" />
+    <currency code="HUF" desc="Ungarske forint" rate="2,378" />
+    <currency code="IDR" desc="Indonesiske rupiah" rate="0,0481" />
+    <currency code="ILS" desc="Israelske shekel" rate="159,51" />
+    <currency code="INR" desc="Indiske rupee" rate="9,28" />
     <currency code="ISK" desc="Islandske kroner *" rate="-" />
-    <currency code="JPY" desc="Japanske yen" rate="5,4290" />
-    <currency code="KRW" desc="Sydkoreanske won" rate="0,5473" />
-    <currency code="LTL" desc="Litauiske litas" rate="215,93" />
-    <currency code="MXN" desc="Mexicanske peso" rate="42,68" />
-    <currency code="MYR" desc="Malaysiske ringgit" rate="176,54" />
-    <currency code="NOK" desc="Norske kroner" rate="90,70" />
-    <currency code="NZD" desc="New Zealandske dollar" rate="473,22" />
-    <currency code="PHP" desc="Filippinske peso" rate="12,76" />
-    <currency code="PLN" desc="Polske zloty" rate="178,34" />
-    <currency code="RON" desc="Rumænske lei" rate="167,92" />
-    <currency code="RUB" desc="Russiske rubel" rate="15,49" />
-    <currency code="SEK" desc="Svenske kroner" rate="81,44" />
-    <currency code="SGD" desc="Singapore dollar" rate="447,62" />
-    <currency code="THB" desc="Thailandske baht" rate="17,47" />
-    <currency code="TRY" desc="Tyrkiske lira" rate="257,82" />
-    <currency code="USD" desc="Amerikanske dollar" rate="556,89" />
-    <currency code="XDR" desc="SDR (Beregnet **)" rate="851,78" />
-    <currency code="ZAR" desc="Sydafrikanske rand" rate="52,84" />
+    <currency code="JPY" desc="Japanske yen" rate="5,4142" />
+    <currency code="KRW" desc="Sydkoreanske won" rate="0,5517" />
+    <currency code="LTL" desc="Litauiske litas" rate="215,92" />
+    <currency code="MXN" desc="Mexicanske peso" rate="42,86" />
+    <currency code="MYR" desc="Malaysiske ringgit" rate="177,59" />
+    <currency code="NOK" desc="Norske kroner" rate="91,48" />
+    <currency code="NZD" desc="New Zealandske dollar" rate="472,84" />
+    <currency code="PHP" desc="Filippinske peso" rate="12,80" />
+    <currency code="PLN" desc="Polske zloty" rate="178,09" />
+    <currency code="RON" desc="Rumænske lei" rate="169,02" />
+    <currency code="RUB" desc="Russiske rubel" rate="15,52" />
+    <currency code="SEK" desc="Svenske kroner" rate="81,45" />
+    <currency code="SGD" desc="Singapore dollar" rate="450,34" />
+    <currency code="THB" desc="Thailandske baht" rate="17,59" />
+    <currency code="TRY" desc="Tyrkiske lira" rate="257,38" />
+    <currency code="USD" desc="Amerikanske dollar" rate="561,94" />
+    <currency code="XDR" desc="SDR (Beregnet **)" rate="855,15" />
+    <currency code="ZAR" desc="Sydafrikanske rand" rate="52,44" />
   </dailyrates>
 </exchangerates>
